@@ -28,8 +28,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import CareKit
-import CareKitStore
+import OTFCareKit
+import OTFCareKitStore
 import Contacts
 import UIKit
 import HealthKit
@@ -43,7 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy private(set) var synchronizedStoreManager: OCKSynchronizedStoreManager = {
         let coordinator = OCKStoreCoordinator()
+        #if HEALTH
         coordinator.attach(eventStore: healthKitStore)
+        #endif
         coordinator.attach(store: coreDataStore)
         return OCKSynchronizedStoreManager(wrapping: coordinator)
     }()
@@ -52,8 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         coreDataStore.populateSampleData()
+        #if HEALTH
         healthKitStore.populateSampleData()
-
+        #endif
         return true
     }
 
@@ -143,7 +146,7 @@ private extension OCKStore {
 }
 
 extension OCKHealthKitPassthroughStore {
-
+    #if HEALTH
     func populateSampleData() {
 
         let schedule = OCKSchedule.dailyAtTime(
@@ -167,4 +170,5 @@ extension OCKHealthKitPassthroughStore {
             }
         }
     }
+    #endif
 }

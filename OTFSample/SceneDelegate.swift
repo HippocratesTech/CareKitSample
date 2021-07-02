@@ -28,7 +28,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import CareKit
+import OTFCareKit
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

@@ -29,8 +29,8 @@
  */
 
 import UIKit
-import CareKit
-import CareKitUI
+import OTFCareKit
+import OTFCareKitUI
 
 class TipView: OCKView, OCKCardable {
 
