@@ -16,11 +16,35 @@ Pod::Spec.new do |s|
   s.author           = { 'kutakmir' => 'kutakmiroslav@gmail.com' }
   s.source           = { :git => 'https://github.com/HippocratesTech/otftoolboxshowcase.git' }
   s.watchos.deployment_target = '6.0'
-  s.source_files = 'OTFSample/**/*.{h,m,swift}'
+  s.source_files = 'OTFToolBoxShowcase/**/*.{h,m,swift}'
   s.platform         = :ios
   s.swift_versions = '5.0'
   s.ios.deployment_target = '13.0'
-  s.dependency 'OTFCareKit/Health', '1.0'
+  s.default_subspec = 'Health'
+
+  s.subspec 'Care' do |ss|
+    ss.source_files = 'OTFToolBoxShowcase/**/*.{h,m,swift}'
+    ss.pod_target_xcconfig = { 
+	'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) CARE'
+    }
+    ss.dependency 'OTFCareKit/Care', '1.0'
+  end
+
+  s.subspec 'Health' do |ss|
+    ss.source_files = 'OTFToolBoxShowcase/**/*.{h,m,swift}'
+    ss.pod_target_xcconfig = { 
+	'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) HEALTH'
+    }
+    ss.dependency 'OTFCareKit/Health', '1.0'
+  end
+
+  s.subspec 'CareHealth' do |ss|
+    ss.source_files = 'OTFToolBoxShowcase/**/*.{h,m,swift}'
+    ss.pod_target_xcconfig = { 
+	'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) CARE HEALTH'
+    }
+    ss.dependency 'OTFCareKit/CareHealth', '1.0'
+  end
 
 end
 

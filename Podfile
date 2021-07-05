@@ -2,15 +2,15 @@
 # platform :ios, '9.0'
 
 source 'https://github.com/HippocratesTech/OTFCocoapodSpecs'
-source 'http://cdn.cocoapods.org'
+source 'https://github.com/CocoaPods/Specs.git'
 
-target 'OTFSample' do
+target 'OTFToolBoxShowcase' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'OTFCareKit/Health', '1.0'
-  # Pods for OTFSample
+  # Pods for OTFToolBoxShowcase
 
-  target 'OTFSampleUITests' do
+  target 'OTFToolBoxShowcaseTests' do
     # Pods for testing
   end
 
