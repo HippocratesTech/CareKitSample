@@ -14,18 +14,18 @@ import UIKit
 import HealthKit
 #endif
 
-public protocol OTFToolBoxShowcaseProtocol {
+public protocol OTFCareKitSampleProtocol {
     func launchIn(_ window: UIWindow?)
 }
 
-public class OTFToolBoxShowcase: OTFToolBoxShowcaseProtocol {
+public class OTFCareKitSample: OTFCareKitSampleProtocol {
     lazy private(set) var coreDataStore = OCKStore(name: "SampleAppStore", type: .inMemory)
 
     lazy private(set) var healthKitStore = OCKHealthKitPassthroughStore(store: coreDataStore)
 
     var window: UIWindow?
 
-    static public let shared: OTFToolBoxShowcaseProtocol = OTFToolBoxShowcase()
+    static public let shared: OTFCareKitSampleProtocol = OTFCareKitSample()
 
     lazy private(set) var synchronizedStoreManager: OCKSynchronizedStoreManager = {
         let coordinator = OCKStoreCoordinator()
