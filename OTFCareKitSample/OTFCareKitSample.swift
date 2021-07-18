@@ -1,6 +1,6 @@
 //
-//  OTFToolBoxShowcase.swift
-//  OTFToolBoxShowcase
+//  OTFCareKitSample.swift
+//  OTFCareKitSample
 //
 //  Created by Miroslav Kutak on 05/07/21.
 //
@@ -63,10 +63,8 @@ public class OTFCareKitSample: OTFCareKitSampleProtocol {
 }
 
 private extension OCKStore {
-
     // Adds tasks and contacts into the store
     func populateSampleData() {
-
         let thisMorning = Calendar.current.startOfDay(for: Date())
         let aFewDaysAgo = Calendar.current.date(byAdding: .day, value: -4, to: thisMorning)!
         let beforeBreakfast = Calendar.current.date(byAdding: .hour, value: 8, to: aFewDaysAgo)!
@@ -143,10 +141,9 @@ private extension OCKStore {
 extension OCKHealthKitPassthroughStore {
     #if HEALTH
     func populateSampleData() {
-
         let schedule = OCKSchedule.dailyAtTime(
             hour: 8, minutes: 0, start: Date(), end: nil, text: nil,
-            duration: .hours(12), targetValues: [OCKOutcomeValue(2000.0, units: "Steps")])
+            duration: .hours(12), targetValues: [OCKOutcomeValue(2_000.0, units: "Steps")])
 
         let steps = OCKHealthKitTask(
             id: "steps",
@@ -160,11 +157,12 @@ extension OCKHealthKitPassthroughStore {
 
         addTasks([steps]) { result in
             switch result {
-            case .success: print("Added tasks into HealthKitPassthroughStore!")
-            case .failure(let error): print("Error: \(error)")
+            case .success:
+                print("Added tasks into HealthKitPassthroughStore!")
+            case .failure(let error):
+                print("Error: \(error)")
             }
         }
     }
     #endif
 }
-

@@ -1,6 +1,6 @@
 //
 //  TipView.swift
-//  OTFToolBoxShowcase
+//  OTFCareKitSample
 //
 //  Created by Miroslav Kutak on 05/07/21.
 //
@@ -10,12 +10,11 @@ import OTFCareKit
 import OTFCareKitUI
 
 class TipView: OCKView, OCKCardable {
-
     var cardView: UIView { self }
     let contentView: UIView = OCKView()
     let headerView = OCKHeaderView()
     let imageView = UIImageView()
-    var imageHeightConstraint: NSLayoutConstraint!
+    var imageHeightConstraint: NSLayoutConstraint?
 
     private let blurView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.regular)
@@ -55,7 +54,7 @@ class TipView: OCKView, OCKCardable {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         imageHeightConstraint = imageView.heightAnchor.constraint(
             equalToConstant: scaledImageHeight(compatibleWith: traitCollection))
-
+        guard let heightConstraint = imageHeightConstraint else { return }
         NSLayoutConstraint.activate([
             headerView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
@@ -70,7 +69,7 @@ class TipView: OCKView, OCKCardable {
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            imageHeightConstraint
+            heightConstraint
         ])
     }
 
@@ -80,8 +79,9 @@ class TipView: OCKView, OCKCardable {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        guard let heightConstraint = imageHeightConstraint else { return }
         if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
-            imageHeightConstraint.constant = scaledImageHeight(compatibleWith: traitCollection)
+            heightConstraint.constant = scaledImageHeight(compatibleWith: traitCollection)
         }
     }
 
@@ -92,4 +92,3 @@ class TipView: OCKView, OCKCardable {
         directionalLayoutMargins = cachedStyle.dimension.directionalInsets1
     }
 }
-

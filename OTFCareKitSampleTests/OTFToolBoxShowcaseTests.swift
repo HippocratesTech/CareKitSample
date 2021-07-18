@@ -1,6 +1,6 @@
 //
-//  OTFToolBoxShowcaseTests.swift
-//  OTFToolBoxShowcaseTests
+//  OTFCareKitSampleTests.swift
+//  OTFCareKitSampleTests
 //
 //  Created by Miroslav Kutak on 05/07/21.
 //
@@ -9,12 +9,13 @@ import XCTest
 @testable import OTFToolBoxShowcase
 
 class OTFToolBoxShowcaseTests: XCTestCase {
-
     override func setUpWithError() throws {
+        super.setUpWithError()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
+        super.tearDownWithError()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
@@ -29,5 +30,4 @@ class OTFToolBoxShowcaseTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

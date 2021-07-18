@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Health'
 
   s.subspec 'Care' do |ss|
+    # ss.source_files = 'OTFCareKitSample/**/*.{h,m,swift}'
     ss.pod_target_xcconfig = { 
 	'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) CARE'
     }
@@ -30,6 +31,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Health' do |ss|
+    # ss.source_files = 'OTFCareKitSample/**/*.{h,m,swift}'
     ss.pod_target_xcconfig = { 
 	'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) HEALTH'
     }
@@ -37,6 +39,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'CareHealth' do |ss|
+    # ss.source_files = 'OTFCareKitSample/**/*.{h,m,swift}'
     ss.pod_target_xcconfig = { 
 	'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) CARE HEALTH'
     }
